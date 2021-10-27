@@ -52,10 +52,9 @@ export default function Home() {
       <main className={styles.main}>
         {!correctNetwork && <AlertNetwork />}
 
-        {isLoading && correctNetwork && <LoadingIndicator /> }
+        {account && isLoading && correctNetwork && <LoadingIndicator /> }
+        {!account && <button onClick={connect}>Connect your wallet to play</button>}
         {!isLoading && <>
-          {!account && <button onClick={connect}>Connect your wallet to play</button>}
-
           {account && !character && <SelectCharacter setCharacter={setCharacter}/>}
           {account && character && <Arena setCharacter={setCharacter} character={character}/>}
         </>}
