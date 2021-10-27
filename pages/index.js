@@ -18,11 +18,7 @@ export default function Home() {
   const { correctNetwork } = useNetwork()
   const [ mining, setMining ] = useState(false)
   const [ character, setCharacter ] = useState(null)
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-  }, []);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchNFTMetadata = async () => {
@@ -36,10 +32,10 @@ export default function Home() {
       setIsLoading(false);
     };
 
-    if (account) {
+    if (account && correctNetwork) {
       fetchNFTMetadata();
     }
-  }, [account]);
+  }, [account, correctNetwork]);
 
   return (
     <div className={styles.container}>
@@ -56,7 +52,8 @@ export default function Home() {
       <main className={styles.main}>
         {!correctNetwork && <AlertNetwork />}
 
-        {isLoading ? <LoadingIndicator /> : <>
+        {isLoading && correctNetwork && <LoadingIndicator /> }
+        {!isLoading && <>
           {!account && <button onClick={connect}>Connect your wallet to play</button>}
 
           {account && !character && <SelectCharacter setCharacter={setCharacter}/>}
