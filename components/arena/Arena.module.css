@@ -1,0 +1,23 @@
+.arena__container {
+  max-width: 640px;
+}
+
+.arena__players {
+  display: flex;
+}
+
+.boss__container {
+  padding: 1rem;
+}
+
+.player__container {
+  padding: 1rem;
+}
+
+.players__images {
+  width: 100%;
+}
+
+.players__progress {
+  width: 100%;
+}

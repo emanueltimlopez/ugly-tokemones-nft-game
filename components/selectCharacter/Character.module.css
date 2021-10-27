@@ -1,0 +1,16 @@
+.character__container{
+  display: flex;
+  max-width: 640px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.character {
+  text-align: center;
+  padding: 1rem;
+}
+
+.character img {
+  width: 100%;
+}
