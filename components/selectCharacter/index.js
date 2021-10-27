@@ -4,9 +4,7 @@ import { transformCharacterData } from "../../utils/transform-character-data";
 import { LoadingIndicator } from "../loading-indicator";
 import styles from './Character.module.css';
 
-function Character({name, imageURI, index, gameContract} ) {
-  const [mintingCharacter, setMintingCharacter] = useState(false);
-
+function Character({name, imageURI, index, gameContract, setMintingCharacter}) {
   const mintCharacterNFTAction = (characterId) => async () => {
     try {
       if (gameContract) {
@@ -39,6 +37,7 @@ function Character({name, imageURI, index, gameContract} ) {
 export function SelectCharacter({ setCharacter }) {
   const [characters, setCharacters] = useState([]);
   const [gameContract, setGameContract] = useState(null);
+  const [mintingCharacter, setMintingCharacter] = useState(false);
 
   useEffect(() => {
     setGameContract(getContract());
@@ -87,9 +86,14 @@ export function SelectCharacter({ setCharacter }) {
       <h2>Select Character</h2>
       <ul className={styles.character__container}>
         {characters?.map((character, index) =>
-          <Character key={index} index={index} gameContract={gameContract} {...character} />)}
+          <Character key={index} index={index} gameContract={gameContract} setMintingCharacter={setMintingCharacter} {...character} />)}
       </ul>
-      {mintingCharacter && <LoadingIndicator />}
+      {mintingCharacter && (
+        <>
+          <LoadingIndicator />
+          <p>Minting the NFT...</p>
+        </>
+      )}
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import { ethers } from 'ethers'
 import abi from './BattleGame.json'
 
-const contractAddress = "0x41f10938C84485A32a28dA8B7EC9110d12706CcE"
+const contractAddress = "0x8A008D9826C44b19B2d33b3eA0Fe6fbbC6Af6c66"
 const contractABI = abi.abi
 
 export function getContract() {
